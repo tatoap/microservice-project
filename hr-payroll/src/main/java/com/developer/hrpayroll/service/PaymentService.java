@@ -1,20 +1,27 @@
 package com.developer.hrpayroll.service;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 
 import com.developer.hrpayroll.entity.Payment;
 import com.developer.hrpayroll.entity.Worker;
+import com.developer.hrpayroll.feignclient.WorkerFeignClient;
 
 @Service
 public class PaymentService {
 	
-	@Value("${hr-worker.host}")
+	@Autowired
+	private WorkerFeignClient workerFeignClient;
+	
+	public Payment getPayment(Long workerId, int days) {
+		
+		Worker worker = workerFeignClient.buscar(workerId).getBody();
+		
+		return new Payment(worker.getName(), worker.getDailyIncome(), days);
+		
+	}
+	
+	/*@Value("${hr-worker.host}")
 	private String workerHost;
 	
 	@Autowired
@@ -28,7 +35,6 @@ public class PaymentService {
 		
 		return new Payment(worker.getName(), worker.getDailyIncome(), days);
 		
-		//return new Payment("Bob", 200.0, days);
-	}
+	}*/
 
 }
