@@ -3,6 +3,7 @@ package com.developer.hruser.entity;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -36,6 +37,7 @@ public class User {
 	
 	@NotBlank
 	@Email
+	@Column(unique = true)
 	private String email;
 	
 	@NotBlank
@@ -46,6 +48,10 @@ public class User {
 		joinColumns = @JoinColumn(name = "user_id"), 
 		inverseJoinColumns = @JoinColumn(name = "role_id"))
 	private Set<Role> roles = new HashSet<>();
+	
+	public User() {
+		
+	}
 
 	public User(Long id, @NotBlank String name, @NotBlank @Email String email, @NotBlank String password,
 			Set<Role> roles) {

@@ -25,6 +25,10 @@ public class Role {
 	@NotBlank
 	@EqualsAndHashCode.Include
 	private String roleName;
+	
+	public Role() {
+		
+	}
 
 	public Role(Long id, @NotBlank String roleName) {
 		this.id = id;
