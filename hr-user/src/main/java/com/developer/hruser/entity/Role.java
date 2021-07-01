@@ -16,7 +16,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name = "role")
+@Table(name = "tb_role")
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Role implements Serializable {
 	

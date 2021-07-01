@@ -24,7 +24,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name = "user")
+@Table(name = "tb_user")
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class User implements Serializable {
 	
